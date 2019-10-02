@@ -12,20 +12,22 @@ Given an RGB image file, returns the matrices for the red, green, and blue compo
 - file - the name of the RGB image file as a string
 
 = RETURNS:
-- red - a 360 x 4 matrix containing the pixel values for the red component of an RGB photo
-- green - a 360 x 4 matrix containing the pixel values for the green component of an RGB photo
-- blue - a 360 x 4 matrix containing the pixel values for the blue component of an RGB photo
+- image - a 360 x 640 x 3 matrix, where the first matrix is the red component, the second is the green component, and the third is the blue component
 """
-
 function load_image(file)
     file = imread(file)
     imshow(convert(Array{Float32,3}, file))
     red = file[:,:,1]
     green = file[:,:,2]
     blue = file[:,:,3]
-    println("Rest with git reset -- mixed")
-return red, green, blue
+    println("Reset with git reset -- mixed")
+    image = zeros(360, 640, 3)
+    image[:,:,1] = red
+    image[:,:,2] = green
+    image[:,:,3] = blue
+    return image
 end
+
 
 #We can create a matrix by first creating an empty matrix with the same dimensions as the original image and then reassigning the matrix values using the original.
 red = elcapitan[:,:,1]
