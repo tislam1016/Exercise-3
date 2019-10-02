@@ -23,5 +23,6 @@ function load_image(file)
     red = file[:,:,1]
     green = file[:,:,2]
     blue = file[:,:,3]
+    println("BUG BUG BUG")
 return red, green, blue
 end
