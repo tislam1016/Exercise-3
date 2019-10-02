@@ -46,3 +46,35 @@ subplot(1,2,2)
 imshow(convert(Array{Float32,3}, image2))
 title("El Capitan (GBR)")
 axis("off")
+
+
+"""
+rotate(image, pixels)
+
+Given an RGB image file and a specification of a number of pixels, returns a side-by-side of both the original image file and a new file that has the red matrix component of the original file shifted by the specified number of pixels.
+
+= PARAMETERS:
+- image - the name of the file as a string
+- pixels - the number of pixels one would like to shift their red pixel matrix by
+
+= RETURNS:
+- original - the original image labeled as "Original"
+- shifted - the original image after the pixels of the red component matrix are shifted by the speciifed number of pixels
+
+"""
+function rotate(image, pixels)
+    image = imread(image)
+    imshow(convert(Array{Float32,3}, image))
+    red = image[:,:,1]
+    green =  image[:,:,2]
+    blue = image[:,:,3]
+    image2 = zeros(360, 640, 3)
+    image2[:,:,1] = circshift(red, (-pixels,0))
+    image2[:,:,2] = green
+    image2[:,:,3] = blue
+    original = subplot(1,2,1);imshow(convert(Array{Float32,3}, image)); title("Original"); axis("off")
+    shifted = subplot(1,2,2); imshow(convert(Array{Float32,3}, image2));  title("Shifted"); axis("off")
+    return(original, shifted)
+end
+
+#To shift the pixels we can use the function circshift() which takes the last row of the matrix and pushes it to the top, but we need to push the first row to the last row so we use the negative sign.
