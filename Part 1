@@ -23,6 +23,26 @@ function load_image(file)
     red = file[:,:,1]
     green = file[:,:,2]
     blue = file[:,:,3]
-    println("BUG BUG BUG")
+    println("Rest with git reset -- mixed")
 return red, green, blue
 end
+
+#We can create a matrix by first creating an empty matrix with the same dimensions as the original image and then reassigning the matrix values using the original.
+red = elcapitan[:,:,1]
+green =  elcapitan[:,:,2]
+blue = elcapitan[:,:,3]
+image2 = zeros(360, 640, 3)
+image2[:,:,1] = green
+image2[:,:,2] = blue
+image2[:,:,3] = red
+
+#We can then plot as follows.
+subplot(1,2,1)
+imshow(convert(Array{Float32,3}, elcapitan))
+axis("off")
+title("El Capitan (RGB)")
+
+subplot(1,2,2)
+imshow(convert(Array{Float32,3}, image2))
+title("El Capitan (GBR)")
+axis("off")
