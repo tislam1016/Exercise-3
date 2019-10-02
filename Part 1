@@ -1,0 +1,27 @@
+elcapitan = imread("el-capitan.png")
+imshow(convert(Array{Float32,3}, elcapitan))
+size(elcapitan)
+
+
+"""
+load_image(file)
+
+Given an RGB image file, returns the matrices for the red, green, and blue components separately.
+
+= PARAMETERS:
+- file - the name of the RGB image file as a string
+
+= RETURNS:
+- red - a 360 x 4 matrix containing the pixel values for the red component of an RGB photo
+- green - a 360 x 4 matrix containing the pixel values for the green component of an RGB photo
+- blue - a 360 x 4 matrix containing the pixel values for the blue component of an RGB photo
+"""
+
+function load_image(file)
+    file = imread(file)
+    imshow(convert(Array{Float32,3}, file))
+    red = file[:,:,1]
+    green = file[:,:,2]
+    blue = file[:,:,3]
+return red, green, blue
+end
